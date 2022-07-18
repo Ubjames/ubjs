@@ -315,7 +315,10 @@ const regexValidation = (e, regex) => {
   const time = new Date();
   if (time.getHours() < 12) {
      return 'Good Morning';
-  } else if (time.getHours() > 12 && time.getHours() < 17) {
+  } else if (time.getHours()
+  
+  
+  > 12 && time.getHours() < 17) {
      return 'Good Afternoon';
   } else {
      return 'Good Evening';
