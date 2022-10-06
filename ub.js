@@ -9,7 +9,7 @@ function getYears(startDate = 1850,endDate=new Date().getFullYear()){
     return years;
 }
 
-function getMonths(short=false){
+function getMonths(short=false){git 
     return short?["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]:["January","February","March","April","May","June","July","August","September","October","November","December"];
 }
 
@@ -47,7 +47,9 @@ String.prototype.capitalizeFirstLetter = function(){
 }
 
 function commarize(num){
-    num = num.toString().split("");
+  let dec='';
+  dec = num.toString().search(/\./) > 0? '.'+num.split('.').at(-1):'';
+    num = num.toString().search(/\./) < 0? num.toString().split("") :num.toString().split(".")[0];
     let newnum=[], r=1;
     
     for(let i=num.length-1;i>=0;i--){
@@ -56,8 +58,9 @@ function commarize(num){
       r++;
      
     }
+    // console.log(dec)
     
-    return newnum.join("");
+    return dec.length<1 ?newnum.join(""):newnum.join("")+dec;
   }
   
 
@@ -274,6 +277,8 @@ const createElement = (el, parent, prepend = false) => {
   root
 ); */
 
+return element;
+
 };
 
 const IsJsonString = (str) =>{
@@ -353,3 +358,32 @@ function charFormatter(char,groupBy=4,seperator=""){
   
   return newChar;
 }
+
+
+/**
+ * 
+ * @param {string | inputEvent} char characters to formate of an inputEvent
+ * @param {{}} options seperator | inPosition
+ * @returns string
+ */
+ const insertTextSeperator  = (char,options={})=>{
+  const {seperator=' ',inPosition=4, onEvent=typeof char === 'object'&& char.target !==undefined?true:false} = options;
+  
+  let input = char;
+  if(onEvent){
+       if(char.inputType&&char.inputType==="deleteContentBackward") return char.target.value;
+       input = char.target.value;
+     }
+         let charArray = [...input.replaceAll(new RegExp(`\\b${seperator}\\b`,'g'),'')];
+       let i =0, newchar= '';
+       while(i<charArray.length){
+         if(i%inPosition===0&&i!==0){ //every 4th position;
+           newchar +=seperator;
+         }
+         newchar += charArray[i];
+         i++;
+       }
+       
+       return newchar;
+
+ }
