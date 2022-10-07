@@ -261,7 +261,7 @@ Array.prototype.moveForward = function(){
 }
 
 const createElement = (el, parent, prepend = false) => {
-  const frag = document.createDocumentFragment();
+  const frag = new DocumentFragment();
   const { nodeName = 'div', ...attrs } = el;
   const element = frag.createElement(nodeName);
   Object.entries(attrs).forEach(([attr, value]) => {
