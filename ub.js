@@ -261,12 +261,13 @@ Array.prototype.moveForward = function(){
 }
 
 const createElement = (el, parent, prepend = false) => {
+  const frag = document.createDocumentFragment();
   const { nodeName = 'div', ...attrs } = el;
-  const element = document.createElement(nodeName);
+  const element = frag.createElement(nodeName);
   Object.entries(attrs).forEach(([attr, value]) => {
     element[attr] = value;
   });
- prepend ?parent.prepend(element): parent.append(element);
+ prepend ?parent.prepend(frag): parent.append(frag);
  
  /* example ->
  createElement(
@@ -277,7 +278,7 @@ const createElement = (el, parent, prepend = false) => {
   root
 ); */
 
-return element;
+return frag;
 
 };
 
