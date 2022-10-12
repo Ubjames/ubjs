@@ -389,3 +389,71 @@ function charFormatter(char,groupBy=4,seperator=""){
        return newchar;
 
  }
+
+ var pvi = {
+  handleInputs:(field)=>{
+     e=window.event;
+     if(!field) field = e.target;
+ 
+   if(!/^[0-9]*$/.test(field.value))return field.value = '';
+         if (field.value.length === 1) {
+         if(field.nextElementSibling){
+             field.nextElementSibling.focus();
+         }else{
+             return; 
+         }
+     }
+     },
+
+
+ handlePaste:(e)=>{
+     e = window.event;
+     e.stopPropagation();
+     e.preventDefault();
+     
+    let clipboardData = e.clipboardData || window.clipboardData;
+     let pastedData = clipboardData.getData('Text');
+ 
+     if(Number.isInteger(+pastedData)){
+             let str = pastedData.toString();
+         if(str.length > 0){
+           let nums = str.split('');
+         let fields = e.target.parentElement.children;
+         
+         for(let i = 0; i<nums.length; i++){
+           fields[i].value=nums[i]; fields[i].focus();
+           if(i===fields.length-1)break;
+         }
+         
+       }
+     }
+     
+ },
+ handleArrowMovement:(box)=>{
+     let e = window.event;
+   if(e.keyCode === 37){
+       if(!box.previousElementSibling)return; 
+         box.previousElementSibling.focus();
+       box.selectionStart = box.selectionEnd = box.value.length;
+   } else if(e.keyCode === 39){
+       if(!box.nextElementSibling)return; 
+         box.nextElementSibling.focus();
+   }
+   
+   if(e.keyCode === 8){
+     e.preventDefault();
+     if(!box.previousElementSibling) return box.value = '';
+     box.value = '';
+     box.previousElementSibling.focus();
+     
+      
+   }else if(e.keyCode === 46){
+     e.preventDefault();
+     if(!box.nextElementSibling) return box.value = '';
+     box.value = '';
+     box.nextElementSibling.focus();   
+ }
+ }
+
+
+}
