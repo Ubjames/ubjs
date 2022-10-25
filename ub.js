@@ -27,7 +27,7 @@ Object.prototype.isEmpty = function(){
     return x.length === 0 ?true:false;
 }
 
-String.prototype.capitalizeFirstLetter = function(){
+/* String.prototype.capitalizeFirstLetter = function(){
     let f, o, strs = [];
     if(this.trim().length > 0){
     if(this.trim().split(" ").length ===1){
@@ -44,7 +44,16 @@ String.prototype.capitalizeFirstLetter = function(){
         return strs.join(" ")
     }
     }else{return this.toString()}
-}
+} */
+
+/**
+ * String constructor
+ * @returns String
+ */
+ String.prototype.capitalizeFirstLetters = function(){ return this.replace(/\w\S*/g, (s)=> s.charAt(0).toUpperCase() + s.substr(1).toLowerCase())};
+ String.prototype.capitalizeFirstLetter  = function(){ return this.charAt(0).toUpperCase() + this.slice(1);}
+ 
+ 
 
 function commarize(num){
   let dec='';
