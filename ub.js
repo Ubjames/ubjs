@@ -50,7 +50,7 @@ Object.prototype.isEmpty = function(){
  * String constructor
  * @returns String
  */
- String.prototype.capitalizeFirstLetters = function(){ return this.replace(/\w\S*/g, (s)=> s.charAt(0).toUpperCase() + s.substr(1).toLowerCase())};
+ String.prototype.capitalizeFirstLetters = function(){ return this.replace(/\w\S*/g, (s)=> s.charAt(0).toUpperCase() + s.slice(1).toLowerCase())};
  String.prototype.capitalizeFirstLetter  = function(){ return this.charAt(0).toUpperCase() + this.slice(1);}
  
  
