@@ -487,6 +487,5 @@ const formatDateWithMonthName = (date) => {
   const month = newDate.getMonth() + 1;
 
   const formattedDate = `${newDate.getDate().toString().padStart(2, '0')} ${getMonthName(month)}, ${year}`;
-
   return formattedDate;
 };
