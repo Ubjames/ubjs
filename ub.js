@@ -27,25 +27,6 @@ Object.prototype.isEmpty = function(){
     return x.length === 0 ?true:false;
 }
 
-/* String.prototype.capitalizeFirstLetter = function(){
-    let f, o, strs = [];
-    if(this.trim().length > 0){
-    if(this.trim().split(" ").length ===1){
-    f = this.trim().split("")[0].toUpperCase();
-    o = this.trim().slice(1);
-    return f+o;
-    } else if(this.trim().split(" ").length > 1){
-        this.trim().split(" ").forEach(s=>{
-            f = s.split("")[0].toUpperCase();
-            o = s.slice(1);
-            strs.push(f+o);
-            
-        })
-        return strs.join(" ")
-    }
-    }else{return this.toString()}
-} */
-
 /**
  * String constructor
  * @returns String
@@ -466,3 +447,46 @@ function charFormatter(char,groupBy=4,seperator=""){
 
 
 }
+
+
+const getMonthName = (month) => {
+  switch (month) {
+     case 1:
+        return 'January';
+     case 2:
+        return 'February';
+     case 3:
+        return 'March';
+     case 4:
+        return 'April';
+     case 5:
+        return 'May';
+     case 6:
+        return 'June';
+     case 7:
+        return 'July';
+     case 8:
+        return 'August';
+     case 9:
+        return 'September';
+     case 10:
+        return 'October';
+     case 11:
+        return 'Novemeber';
+     case 12:
+        return 'December';
+     default:
+        break;
+  }
+};
+const formatDateWithMonthName = (date) => {
+  if (!date) return '';
+
+  const newDate = new Date(date);
+  const year = newDate.getFullYear();
+  const month = newDate.getMonth() + 1;
+
+  const formattedDate = `${newDate.getDate().toString().padStart(2, '0')} ${getMonthName(month)}, ${year}`;
+
+  return formattedDate;
+};
