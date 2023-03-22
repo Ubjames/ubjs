@@ -282,7 +282,7 @@ const IsJsonString = (str) =>{
   return true;
 }
 
-const objIsEmpty = (obj)=>{
+function objIsEmpty(obj){
   if(obj && Object.keys(obj).length === 0 && Object.getPrototypeOf(obj) === Object.prototype) {
     return true;
   } else {
@@ -290,7 +290,7 @@ const objIsEmpty = (obj)=>{
   }
 }
 
-const isObject = (value)=>{
+function isObject(value){
   if (typeof value === 'object' &&
      !Array.isArray(value) &&
      value !== null) {
