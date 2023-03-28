@@ -9,7 +9,7 @@ function getYears(startDate = 1850,endDate=new Date().getFullYear()){
     return years;
 }
 
-function getMonths(short=false){git 
+function getMonths(short=false){ 
     return short?["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]:["January","February","March","April","May","June","July","August","September","October","November","December"];
 }
 
@@ -17,15 +17,15 @@ function getWeekDays(short=false){
     return short?["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]:["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 }
 
-Object.prototype.isEmpty = function(){
-    let x = [];
-    for(key in this){
-        if(Object.hasOwnProperty.apply(this,[key])){
-             x.push(key);
-        }
-    }
-    return x.length === 0 ?true:false;
-}
+// Object.prototype.isEmpty = function(){
+//     let x = [];
+//     for(key in this){
+//         if(Object.hasOwnProperty.apply(this,[key])){
+//              x.push(key);
+//         }
+//     }
+//     return x.length === 0 ?true:false;
+// }
 
 /**
  * String constructor
@@ -48,13 +48,12 @@ function commarize(num){
       r++;
      
     }
-    // console.log(dec)
+
     
     return dec.length<1 ?newnum.join(""):newnum.join("")+dec;
   }
   
 
-// console.log(inWords("568945","Naira"))
 /**
  * 
  * @param {string} num  must be a string for best result
