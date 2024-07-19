@@ -17,15 +17,15 @@ function getWeekDays(short=false){
     return short?["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]:["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 }
 
-// Object.prototype.isEmpty = function(){
-//     let x = [];
-//     for(key in this){
-//         if(Object.hasOwnProperty.apply(this,[key])){
-//              x.push(key);
-//         }
-//     }
-//     return x.length === 0 ?true:false;
-// }
+Object.prototype.isEmpty = function(){
+    let x = [];
+    for(key in this){
+        if(Object.hasOwnProperty.apply(this,[key])){
+             x.push(key);
+        }
+    }
+    return x.length === 0 ?true:false;
+}
 
 /**
  * String constructor
@@ -108,8 +108,8 @@ let digits = commarize(`${num}`).split(","), unit, rst;
             }
           }
           }else{
-            words += wordLookup.once[hun[0]]+" "+wordLookup.once[hun[1]] +" "+wordLookup.once[hun[2]] +" ";
           }
+          words += wordLookup.once[hun[0]]+" "+wordLookup.once[hun[1]] +" "+wordLookup.once[hun[2]] +" ";
           
         break;
     case 2:
@@ -249,14 +249,12 @@ Array.prototype.moveForward = function(){
 
 }
 
-function createElement (el, parent, prepend = false) {
-  const frag = new DocumentFragment();
+const createElement = (el, parent, prepend = false) => {
   const { nodeName = 'div', ...attrs } = el;
   const element = document.createElement(nodeName);
   Object.entries(attrs).forEach(([attr, value]) => {
     element[attr] = value;
   });
-  frag.append(element);
  prepend ?parent.prepend(element): parent.append(element);
  
  /* example ->
@@ -354,22 +352,22 @@ function charFormatter(char,groupBy=4,seperator=""){
 /**
  * 
  * @param {string | inputEvent} char characters to formate of an inputEvent
- * @param {{}} options seperator | inPosition
+ * @param {{}} options separator | inPosition
  * @returns string
  */
- const insertTextSeperator  = (char,options={})=>{
-  const {seperator=' ',inPosition=4, onEvent=typeof char === 'object'&& char.target !==undefined?true:false} = options;
+const insertTextSeperator  = (char,options)=>{
+  const {separator=' ',inPosition=4, onEvent=typeof char === 'object'&& char.target !==undefined?true:false} = options;
   
   let input = char;
   if(onEvent){
-       if(char.inputType&&char.inputType==="deleteContentBackward") return char.target.value;
+       if((char.inputType&&char.inputType==="deleteContentBackward") || (char.nativeEvent.inputType&&char.nativeEvent.inputType === "deleteContentBackward")) return char.target.value;
        input = char.target.value;
      }
-         let charArray = [...input.replaceAll(new RegExp(`\\b${seperator}\\b`,'g'),'')];
+         let charArray = [...input.replaceAll(new RegExp('[^a-zA-Z0-9 ]|'+separator,'g'),'')];
        let i =0, newchar= '';
        while(i<charArray.length){
          if(i%inPosition===0&&i!==0){ //every 4th position;
-           newchar +=seperator;
+           newchar +=separator;
          }
          newchar += charArray[i];
          i++;
@@ -488,3 +486,7 @@ const formatDateWithMonthName = (date) => {
   const formattedDate = `${newDate.getDate().toString().padStart(2, '0')} ${getMonthName(month)}, ${year}`;
   return formattedDate;
 };
+
+function $(selector='',all=false){
+  return all ? document.querySelectorAll(selector): document.querySelector(selector);
+ }
