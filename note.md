@@ -1,6 +1,8 @@
 ## To be implemented
 1. pvi should be more easier to add to integrate
-solution:: by just adding data-pvi attribute to either the parent inputs or on the input it self
+- solution:: by just adding data-pvi attribute to either the parent inputs or on the input it self
+2.  to fetch all using `$()` selector use $('.header-icon-com*'); `with asterisk` or with a second parameter true `$('.header-icon-com',true);`
+
 
 
 ## Minifier used -  vsCode extension

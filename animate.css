@@ -1474,10 +1474,34 @@
       transform: translate3d(0, 0, 0);
    }
 }
+@keyframes fadeInLeftUp {
+   from {
+       opacity: 0;
+       transform: translate(-100%, 100%);
+   }
+   to {
+       opacity: 1;
+       transform: translate(0, 0);
+   }
+}
+@-webkit-keyframes fadeInLeftUp {
+   from {
+       opacity: 0;
+       transform: translate(-100%, 100%);
+   }
+   to {
+       opacity: 1;
+       transform: translate(0, 0);
+   }
+}
 
 .fadeInLeft {
    -webkit-animation-name: fadeInLeft;
    animation-name: fadeInLeft;
+}
+.fadeInLeftUp {
+   -webkit-animation-name: fadeInLeftUp;
+   animation-name: fadeInLeftUp;
 }
 
 @-webkit-keyframes fadeInLeftBig {
