@@ -490,3 +490,10 @@ const formatDateWithMonthName = (date) => {
 function $(selector='',all=false){
   return all ? document.querySelectorAll(selector): document.querySelector(selector);
  }
+
+ String.prototype.truncate=function(maxLength=200){
+  if (this.length > maxLength) {
+      return this.substring(0, maxLength) + '...';
+  }
+  return this;
+}
