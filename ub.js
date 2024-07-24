@@ -495,5 +495,5 @@ function $(selector='',all=false){
   if (this.length > maxLength) {
       return this.substring(0, maxLength) + '...';
   }
-  return this;
+  return this.toString();
 }
