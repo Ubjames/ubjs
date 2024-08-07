@@ -13,6 +13,10 @@ See the Apache Version 2.0 License for specific language governing permissions
 and limitations under the License.
 ***************************************************************************** */
 
+/**
+ * sniper.js
+ * Version: 1.1.0
+ */
 
 /**
  * This function generates an array of years between a given start and end date.
