@@ -4771,7 +4771,7 @@ div#sniper_toast.success #sniper_toast_msg {
    overflow: hidden;
    white-space: nowrap;
    font-size: large;
-   font-family: 'Aeonik TRIAL';
+   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #sniper_toast.error #sniper_toast_msg {
