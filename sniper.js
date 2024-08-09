@@ -15,7 +15,7 @@ and limitations under the License.
 
 /**
  * sniper.js
- * Version: 1.1.0
+ * Version: 1.8.0
  */
 
 /**
@@ -850,20 +850,26 @@ function getRandomInt(min, max) {
  *
  * @param {string} junk - The characters to trim. Default is a single space.
  * @returns {string} - The trimmed string.
- */
+*/
 String.prototype.trimStart = function(junk=' ') {
-  const string = [...this]; 
-  let i = 0,char = [];
-  while (junk[i]){
-    if(junk[i]===string[i]){
-     char +=junk[i];
-    }
-
-    i++;
-  }
-
- return (char!=junk)?this.toString(): this.substring(this.indexOf(char.at(-1))+1);
+  const str = this.toString();
+  return str.startsWith(junk) ? str.slice(junk.length,str.length): str;
 }
+
+//--- old version
+// String.prototype.trimStart = function(junk=' ') {
+//   const string = [...this]; 
+//   let i = 0,char = [];
+//   while (junk[i]){
+//     if(junk[i]===string[i]){
+//      char +=junk[i];
+//     }
+
+//     i++;
+//   }
+
+//  return (char!=junk)?this.toString(): this.substring(this.indexOf(char.at(-1))+1);
+// }
 
 /**
  * Trims trailing whitespace from the end of a string.
@@ -871,17 +877,22 @@ String.prototype.trimStart = function(junk=' ') {
  * @param {string} junk - The characters to trim. Default is a single space.
  * @returns {string} - The trimmed string.
  */
-String.prototype.trimEnd= function(junk=' ') {
-  let i = 0,char = '';
-  while (junk.at(i)){
-  i--;
-  if(this.at(i)===junk.at(i)){
-      char =  junk.at(i)+char;
-  }
+String.prototype.trimEnd = function(junk=' ') {
+  const str = this.toString();
+  return str.endsWith(junk) ? str.slice(0,`-${junk.length}`): str;
 }
+//--- old version
+// String.prototype.trimEnd= function(junk=' ') {
+//   let i = 0,char = '';
+//   while (junk.at(i)){
+//   i--;
+//   if(this.at(i)===junk.at(i)){
+//       char =  junk.at(i)+char;
+//   }
+// }
 
- return (char!=junk)?this.toString(): this.substring(0,(this.length - char.length));
-}
+//  return (char!=junk)?this.toString(): this.substring(0,(this.length - char.length));
+// }
 
 /**
  * Parses the query string of the current URL and returns an object containing the key-value pairs.
@@ -897,3 +908,12 @@ Location.prototype.queryObject = function(){
   }, {});
 }
 
+/**
+ * Removes each node in the NodeList from the DOM.
+ *
+ * @returns {NodeList} The NodeList from which the nodes were removed.
+ */
+NodeList.prototype.remove = function() {
+  Array.from(this).forEach((node) => node.remove());
+  return this;
+}
